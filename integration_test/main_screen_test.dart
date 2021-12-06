@@ -4,9 +4,8 @@ import 'package:integration_test/integration_test.dart';
 import 'package:task_management_redux/main.dart' as app;
 
 void main() async {
-
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
-  
+
   group("Test Main Screen Integration", () {
     testWidgets("Test Main Screen add a new task", (WidgetTester tester) async {
       app.main();
@@ -61,10 +60,7 @@ void main() async {
 
       final Finder theNewCheckBox =
           find.descendant(of: theTask, matching: theDoneCheckBox);
-      // expect(
-      //   theCheckBox,
-      //   isA<Checkbox>().having((t) => t.value, "isTrue", false),
-      // );
+
       expect(theNewCheckBox, findsOneWidget);
       await tester.pumpAndSettle(const Duration(seconds: 1));
     });
@@ -78,7 +74,6 @@ void main() async {
           widget is ListTile &&
           widget.title is Text &&
           (widget.title as Text).data!.contains("test content"));
-
 
       await tester.longPress(theTask);
 
