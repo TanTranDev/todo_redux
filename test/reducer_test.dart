@@ -6,17 +6,12 @@ import 'package:task_management_redux/store/reducers/reducer.dart';
 
 void main() {
   group("Test reducers", () {
+    final reducer = appStateReducer;
     //begin test change status app with 3 parts
     group("Test change status app", () {
       AppState? firstState;
-      AppState Function({required String status})? reducerSetStatus;
-
       setUp(() {
         firstState = AppState();
-        reducerSetStatus = ({required String status}) {
-          return reducerChangeStatus(
-              firstState!, DoChangeStatus.create(newStatus: status));
-        };
       });
 
       final List<String> listStatus = [
@@ -27,31 +22,30 @@ void main() {
 
       for (final status in listStatus) {
         test("Set status is $status", () async {
-          final AppState newState = reducerSetStatus!(status: status);
-          expect(newState.status, status);
+          final AppState newState = reducer(firstState!,
+              DoChangeStatusAppActionReducer.create(newStatus: status));
+          final AppState expectState =
+              firstState!.rebuild((p0) => p0.status = status);
+          expect(newState, expectState);
         });
       }
     });
     //begin test change tasks of app
     group("Test change tasks of app", () {
       AppState? firstState;
-      AppState Function({required List<Task> newTasks})? reducerSetTasks;
       List<Task> newTasks = [];
       for (int i = 0; i < 3; i++) {
         newTasks.add(Task((b) => b.title = "Title $i"));
       }
       setUp(() {
         firstState = AppState();
-        reducerSetTasks = ({required List<Task> newTasks}) {
-          return reducerChangeTasks(
-              firstState!, DoChangeTasks.create(newTasks: newTasks));
-        };
       });
 
       test("Set tasks", () {
-        final AppState newState = reducerSetTasks!(newTasks: newTasks);
-        expect(newState.tasks!.length, 3);
-        expect(newState.tasks!.last.title, "Title 2");
+        final AppState newState = reducer(firstState!,
+            DoChangeTasksAppActionReducer.create(newTasks: newTasks));
+        final expectState = firstState!.rebuild((p0) => p0..tasks = newTasks);
+        expect(newState, expectState);
       });
     });
   });
