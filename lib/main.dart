@@ -4,7 +4,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux_epics/redux_epics.dart';
 import 'package:task_management_redux/repository/repository.dart';
 import 'package:redux/redux.dart';
-import 'package:task_management_redux/store/actions/action.dart';
+import 'package:task_management_redux/store/actions/task_actions.dart';
 import 'package:task_management_redux/store/epics/epics.dart';
 import 'package:task_management_redux/store/models/app_state.dart';
 import 'package:task_management_redux/store/reducers/reducer.dart';
@@ -35,7 +35,7 @@ class TodoApp extends StatelessWidget {
             converter: (Store<AppState> store) =>
                 AppStateViewModel.create(store),
             onInitialBuild: (viewModel) {
-              viewModel.doAction(action: DoGetAllTaskTaskActionEpics());
+              viewModel.doAction(action: GetAllTaskMiddlewareTaskAction());
             },
             builder: (context, viewModel) {
               final tasks = viewModel.tasks;
@@ -62,16 +62,17 @@ class TodoApp extends StatelessWidget {
                                             : false,
                                         onChanged: (bool? value) {
                                           viewModel.doAction(
-                                            action: DoUpdateTaskTaskActionEpics
-                                                .create(
-                                                    updateTask: tasks[index]),
+                                            action:
+                                                UpdateTaskMiddlewareTaskAction
+                                                    .create(
+                                                        updateTask:
+                                                            tasks[index]),
                                           );
                                         }),
                                     onLongPress: () {
                                       viewModel.doAction(
-                                        action:
-                                            DoDeleteTaskTaskActionEpics.create(
-                                                deleteTask: tasks[index]),
+                                        action: DeleteTaskMiddlewareTaskAction
+                                            .create(deleteTask: tasks[index]),
                                       );
                                     },
                                   );
@@ -166,7 +167,7 @@ class _FormFieldWidgetState extends State<FormFieldWidget> {
                     key: const Key("Button create"),
                     onTap: () async {
                       viewModel.doAction(
-                          action: DoCreateTaskTaskActionEpics.create(
+                          action: CreateTaskMiddlewareTaskAction.create(
                               newTask: value));
                       Navigator.of(context).pop();
                     },

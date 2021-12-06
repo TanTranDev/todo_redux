@@ -2,7 +2,8 @@ import 'dart:developer';
 
 import 'package:redux_epics/redux_epics.dart';
 import 'package:task_management_redux/repository/repository.dart';
-import 'package:task_management_redux/store/actions/action.dart';
+import 'package:task_management_redux/store/actions/task_actions.dart';
+import 'package:task_management_redux/store/actions/app_actions.dart';
 import 'package:task_management_redux/store/models/app_state.dart';
 import 'package:task_management_redux/store/models/task.dart';
 
@@ -26,20 +27,20 @@ class AppMiddleware implements EpicClass<AppState> {
     EpicStore<AppState> store,
   ) async* {
     await for (final action in actions) {
-      if (action is DoGetAllTaskTaskActionEpics) {
+      if (action is GetAllTaskMiddlewareTaskAction) {
         try {
-          yield DoChangeStatusAppActionReducer.create(newStatus: "isLoading");
+          yield ChangeStatusReducerAppAction.create(newStatus: "isLoading");
           final tasks = await repository.getAllTasks();
-          yield DoChangeTasksAppActionReducer.create(newTasks: tasks.toList());
+          yield ChangeTasksReducerAppAction.create(newTasks: tasks.toList());
         } catch (e, stackTrack) {
-          yield DoChangeStatusAppActionReducer.create(newStatus: "error");
+          yield ChangeStatusReducerAppAction.create(newStatus: "error");
           log(
             "Error when get all tasks from local storage",
             error: e,
             stackTrace: stackTrack,
           );
         } finally {
-          yield DoChangeStatusAppActionReducer.create(newStatus: "idle");
+          yield ChangeStatusReducerAppAction.create(newStatus: "idle");
         }
       }
     }
@@ -50,22 +51,22 @@ class AppMiddleware implements EpicClass<AppState> {
     EpicStore<AppState> store,
   ) async* {
     await for (final action in actions) {
-      if (action is DoCreateTaskTaskActionEpics) {
+      if (action is CreateTaskMiddlewareTaskAction) {
         try {
-          yield DoChangeStatusAppActionReducer.create(newStatus: "isLoading");
+          yield ChangeStatusReducerAppAction.create(newStatus: "isLoading");
           final newTask = Task((b) => b..title = action.task);
           await repository.createTask(newTask);
           final tasks = await repository.getAllTasks();
-          yield DoChangeTasksAppActionReducer.create(newTasks: tasks.toList());
+          yield ChangeTasksReducerAppAction.create(newTasks: tasks.toList());
         } catch (e, stackTrack) {
-          yield DoChangeStatusAppActionReducer.create(newStatus: "error");
+          yield ChangeStatusReducerAppAction.create(newStatus: "error");
           log(
             "Error when create a task to local storage",
             error: e,
             stackTrace: stackTrack,
           );
         } finally {
-          yield DoChangeStatusAppActionReducer.create(newStatus: "idle");
+          yield ChangeStatusReducerAppAction.create(newStatus: "idle");
         }
       }
     }
@@ -76,21 +77,21 @@ class AppMiddleware implements EpicClass<AppState> {
     EpicStore<AppState> store,
   ) async* {
     await for (final action in actions) {
-      if (action is DoUpdateTaskTaskActionEpics) {
+      if (action is UpdateTaskMiddlewareTaskAction) {
         try {
-          yield DoChangeStatusAppActionReducer.create(newStatus: "isLoading");
+          yield ChangeStatusReducerAppAction.create(newStatus: "isLoading");
           await repository.updateTask(action.task);
           final tasks = await repository.getAllTasks();
-          yield DoChangeTasksAppActionReducer.create(newTasks: tasks.toList());
+          yield ChangeTasksReducerAppAction.create(newTasks: tasks.toList());
         } catch (e, stackTrack) {
-          yield DoChangeStatusAppActionReducer.create(newStatus: "error");
+          yield ChangeStatusReducerAppAction.create(newStatus: "error");
           log(
             "Error when delete a task from local storage",
             error: e,
             stackTrace: stackTrack,
           );
         } finally {
-          yield DoChangeStatusAppActionReducer.create(newStatus: "idle");
+          yield ChangeStatusReducerAppAction.create(newStatus: "idle");
         }
       }
     }
@@ -101,21 +102,21 @@ class AppMiddleware implements EpicClass<AppState> {
     EpicStore<AppState> store,
   ) async* {
     await for (final action in actions) {
-      if (action is DoDeleteTaskTaskActionEpics) {
+      if (action is DeleteTaskMiddlewareTaskAction) {
         try {
-          yield DoChangeStatusAppActionReducer.create(newStatus: "isLoading");
+          yield ChangeStatusReducerAppAction.create(newStatus: "isLoading");
           await repository.deleteTask(action.task);
           final tasks = await repository.getAllTasks();
-          yield DoChangeTasksAppActionReducer.create(newTasks: tasks.toList());
+          yield ChangeTasksReducerAppAction.create(newTasks: tasks.toList());
         } catch (e, stackTrack) {
-          yield DoChangeStatusAppActionReducer.create(newStatus: "error");
+          yield ChangeStatusReducerAppAction.create(newStatus: "error");
           log(
             "Error when delete a task from local storage",
             error: e,
             stackTrace: stackTrack,
           );
         } finally {
-          yield DoChangeStatusAppActionReducer.create(newStatus: "idle");
+          yield ChangeStatusReducerAppAction.create(newStatus: "idle");
         }
       }
     }

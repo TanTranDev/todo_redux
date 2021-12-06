@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:task_management_redux/store/actions/action.dart';
+import 'package:task_management_redux/store/actions/app_actions.dart';
 import 'package:task_management_redux/store/models/app_state.dart';
 import 'package:task_management_redux/store/models/task.dart';
 import 'package:task_management_redux/store/reducers/reducer.dart';
@@ -23,7 +23,7 @@ void main() {
       for (final status in listStatus) {
         test("Set status is $status", () async {
           final AppState newState = reducer(firstState!,
-              DoChangeStatusAppActionReducer.create(newStatus: status));
+              ChangeStatusReducerAppAction.create(newStatus: status));
           final AppState expectState =
               firstState!.rebuild((p0) => p0.status = status);
           expect(newState, expectState);
@@ -43,7 +43,7 @@ void main() {
 
       test("Set tasks", () {
         final AppState newState = reducer(firstState!,
-            DoChangeTasksAppActionReducer.create(newTasks: newTasks));
+            ChangeTasksReducerAppAction.create(newTasks: newTasks));
         final expectState = firstState!.rebuild((p0) => p0..tasks = newTasks);
         expect(newState, expectState);
       });
