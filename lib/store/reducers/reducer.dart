@@ -16,5 +16,5 @@ AppState _reducerChangeStatusAppState(
 
 AppState _reducerChangeTasksAppState(
     AppState state, ChangeTasksReducerAppAction action) {
-  return state.rebuild((p0) => p0..tasks = action.tasks);
+  return state.rebuild((p0) => p0..tasks = action.tasks.toBuilder());
 }

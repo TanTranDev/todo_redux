@@ -20,7 +20,7 @@ class AppStateViewModel {
 
     return AppStateViewModel(
         status: store.state.status,
-        tasks: store.state.tasks ?? [],
+        tasks: store.state.tasks.isNotEmpty ? store.state.tasks.toList() : [],
         doAction: onDoAction);
   }
 }

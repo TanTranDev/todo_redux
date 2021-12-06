@@ -92,7 +92,7 @@ class ChangeStatusReducerAppActionBuilder
 
 class _$ChangeTasksReducerAppAction extends ChangeTasksReducerAppAction {
   @override
-  final List<Task> tasks;
+  final BuiltList<Task> tasks;
 
   factory _$ChangeTasksReducerAppAction(
           [void Function(ChangeTasksReducerAppActionBuilder)? updates]) =>
@@ -137,16 +137,16 @@ class ChangeTasksReducerAppActionBuilder
             ChangeTasksReducerAppActionBuilder> {
   _$ChangeTasksReducerAppAction? _$v;
 
-  List<Task>? _tasks;
-  List<Task>? get tasks => _$this._tasks;
-  set tasks(List<Task>? tasks) => _$this._tasks = tasks;
+  ListBuilder<Task>? _tasks;
+  ListBuilder<Task> get tasks => _$this._tasks ??= new ListBuilder<Task>();
+  set tasks(ListBuilder<Task>? tasks) => _$this._tasks = tasks;
 
   ChangeTasksReducerAppActionBuilder();
 
   ChangeTasksReducerAppActionBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _tasks = $v.tasks;
+      _tasks = $v.tasks.toBuilder();
       _$v = null;
     }
     return this;
@@ -165,10 +165,21 @@ class ChangeTasksReducerAppActionBuilder
 
   @override
   _$ChangeTasksReducerAppAction build() {
-    final _$result = _$v ??
-        new _$ChangeTasksReducerAppAction._(
-            tasks: BuiltValueNullFieldError.checkNotNull(
-                tasks, 'ChangeTasksReducerAppAction', 'tasks'));
+    _$ChangeTasksReducerAppAction _$result;
+    try {
+      _$result =
+          _$v ?? new _$ChangeTasksReducerAppAction._(tasks: tasks.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'tasks';
+        tasks.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'ChangeTasksReducerAppAction', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

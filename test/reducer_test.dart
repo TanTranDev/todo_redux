@@ -1,3 +1,4 @@
+import 'package:built_collection/built_collection.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:task_management_redux/store/actions/app_actions.dart';
 import 'package:task_management_redux/store/models/app_state.dart';
@@ -33,9 +34,10 @@ void main() {
     //begin test change tasks of app
     group("Test change tasks of app", () {
       AppState? firstState;
-      List<Task> newTasks = [];
+      BuiltList<Task> newTasks = BuiltList<Task>([]);
       for (int i = 0; i < 3; i++) {
-        newTasks.add(Task((b) => b.title = "Title $i"));
+        newTasks.rebuild((p0) => p0..add(Task((b) => b.title = "Title $i")));
+        // newTasks.add(Task((b) => b.title = "Title $i"));
       }
       setUp(() {
         firstState = AppState();
@@ -44,7 +46,8 @@ void main() {
       test("Set tasks", () {
         final AppState newState = reducer(firstState!,
             ChangeTasksReducerAppAction.create(newTasks: newTasks));
-        final expectState = firstState!.rebuild((p0) => p0..tasks = newTasks);
+        final expectState =
+            firstState!.rebuild((p0) => p0..tasks = newTasks.toBuilder());
         expect(newState, expectState);
       });
     });

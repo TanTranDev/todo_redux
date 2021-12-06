@@ -10,13 +10,13 @@ abstract class AbstractAppState {}
 abstract class AppState
     implements Built<AppState, AppStateBuilder>, AbstractAppState {
   int get pageID;
-  List<Task>? get tasks;
+  BuiltList<Task> get tasks;
   String get status;
   AppState._();
   static Serializer<AppState> get serializer => _$appStateSerializer;
   static void _initializeBuilder(AppStateBuilder builder) {
     builder.pageID = 1;
-    builder.tasks = [];
+    builder.tasks = BuiltList<Task>([]).toBuilder();
     builder.status = "idle";
   }
 

@@ -36,8 +36,8 @@ void main() {
       );
       when(mockAbstractRepository.getAllTasks()).thenAnswer(mockAnswer);
       expect(
-        await stream.toList().then((value) => value.toString()),
-        matcher.toString(),
+        await stream.toList(),
+        matcher,
       );
     }
     // end set up run test
@@ -56,7 +56,7 @@ void main() {
         action: GetAllTaskMiddlewareTaskAction(),
         matcher: [
           ChangeStatusReducerAppAction.create(newStatus: "isLoading"),
-          ChangeTasksReducerAppAction.create(newTasks: tasks.toList()),
+          ChangeTasksReducerAppAction.create(newTasks: tasks.toBuiltList()),
           ChangeStatusReducerAppAction.create(newStatus: "idle"),
         ],
       );
@@ -66,7 +66,7 @@ void main() {
       // set up run test
       runTest(
           {required Future<BuiltList<Task>> Function(Invocation) mockAnswer,
-          required Future<int> Function(Invocation) mockAnswer2,
+          required Future<int> Function(Invocation) mockAnswerInt,
           required action,
           required dynamic matcher}) async {
         Stream<dynamic> stream = appMiddleware.call(
@@ -75,9 +75,9 @@ void main() {
             store,
           ),
         );
-        when(mockAbstractRepository.createTask(task)).thenAnswer(mockAnswer2);
-        when(mockAbstractRepository.updateTask(task)).thenAnswer(mockAnswer2);
-        when(mockAbstractRepository.deleteTask(task)).thenAnswer(mockAnswer2);
+        when(mockAbstractRepository.createTask(task)).thenAnswer(mockAnswerInt);
+        when(mockAbstractRepository.updateTask(task)).thenAnswer(mockAnswerInt);
+        when(mockAbstractRepository.deleteTask(task)).thenAnswer(mockAnswerInt);
         when(mockAbstractRepository.getAllTasks()).thenAnswer(mockAnswer);
         expect(
           await stream.toList().then((value) => value.toString()),
@@ -97,13 +97,13 @@ void main() {
               task,
             ]);
           },
-          mockAnswer2: (_) async {
+          mockAnswerInt: (_) async {
             return 0;
           },
           action: CreateTaskMiddlewareTaskAction.create(newTask: "Title"),
           matcher: [
             ChangeStatusReducerAppAction.create(newStatus: "isLoading"),
-            ChangeTasksReducerAppAction.create(newTasks: tasks.toList()),
+            ChangeTasksReducerAppAction.create(newTasks: tasks.toBuiltList()),
             ChangeStatusReducerAppAction.create(newStatus: "idle"),
           ],
         );
@@ -119,13 +119,13 @@ void main() {
               task,
             ]);
           },
-          mockAnswer2: (_) async {
+          mockAnswerInt: (_) async {
             return 0;
           },
           action: UpdateTaskMiddlewareTaskAction.create(updateTask: task),
           matcher: [
             ChangeStatusReducerAppAction.create(newStatus: "isLoading"),
-            ChangeTasksReducerAppAction.create(newTasks: tasks.toList()),
+            ChangeTasksReducerAppAction.create(newTasks: tasks.toBuiltList()),
             ChangeStatusReducerAppAction.create(newStatus: "idle"),
           ],
         );
@@ -141,13 +141,13 @@ void main() {
               task,
             ]);
           },
-          mockAnswer2: (_) async {
+          mockAnswerInt: (_) async {
             return 0;
           },
           action: DeleteTaskMiddlewareTaskAction.create(deleteTask: task),
           matcher: [
             ChangeStatusReducerAppAction.create(newStatus: "isLoading"),
-            ChangeTasksReducerAppAction.create(newTasks: tasks.toList()),
+            ChangeTasksReducerAppAction.create(newTasks: tasks.toBuiltList()),
             ChangeStatusReducerAppAction.create(newStatus: "idle"),
           ],
         );

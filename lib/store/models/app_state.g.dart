@@ -20,18 +20,15 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
     final result = <Object?>[
       'pageID',
       serializers.serialize(object.pageID, specifiedType: const FullType(int)),
+      'tasks',
+      serializers.serialize(object.tasks,
+          specifiedType:
+              const FullType(BuiltList, const [const FullType(Task)])),
       'status',
       serializers.serialize(object.status,
           specifiedType: const FullType(String)),
     ];
-    Object? value;
-    value = object.tasks;
-    if (value != null) {
-      result
-        ..add('tasks')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(List, const [const FullType(Task)])));
-    }
+
     return result;
   }
 
@@ -51,10 +48,10 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
               specifiedType: const FullType(int)) as int;
           break;
         case 'tasks':
-          result.tasks = serializers.deserialize(value,
+          result.tasks.replace(serializers.deserialize(value,
                   specifiedType:
-                      const FullType(List, const [const FullType(Task)]))
-              as List<Task>?;
+                      const FullType(BuiltList, const [const FullType(Task)]))!
+              as BuiltList<Object?>);
           break;
         case 'status':
           result.status = serializers.deserialize(value,
@@ -71,16 +68,18 @@ class _$AppState extends AppState {
   @override
   final int pageID;
   @override
-  final List<Task>? tasks;
+  final BuiltList<Task> tasks;
   @override
   final String status;
 
   factory _$AppState([void Function(AppStateBuilder)? updates]) =>
       (new AppStateBuilder()..update(updates)).build();
 
-  _$AppState._({required this.pageID, this.tasks, required this.status})
+  _$AppState._(
+      {required this.pageID, required this.tasks, required this.status})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(pageID, 'AppState', 'pageID');
+    BuiltValueNullFieldError.checkNotNull(tasks, 'AppState', 'tasks');
     BuiltValueNullFieldError.checkNotNull(status, 'AppState', 'status');
   }
 
@@ -123,9 +122,9 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
   int? get pageID => _$this._pageID;
   set pageID(int? pageID) => _$this._pageID = pageID;
 
-  List<Task>? _tasks;
-  List<Task>? get tasks => _$this._tasks;
-  set tasks(List<Task>? tasks) => _$this._tasks = tasks;
+  ListBuilder<Task>? _tasks;
+  ListBuilder<Task> get tasks => _$this._tasks ??= new ListBuilder<Task>();
+  set tasks(ListBuilder<Task>? tasks) => _$this._tasks = tasks;
 
   String? _status;
   String? get status => _$this._status;
@@ -139,7 +138,7 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
     final $v = _$v;
     if ($v != null) {
       _pageID = $v.pageID;
-      _tasks = $v.tasks;
+      _tasks = $v.tasks.toBuilder();
       _status = $v.status;
       _$v = null;
     }
@@ -159,13 +158,26 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
 
   @override
   _$AppState build() {
-    final _$result = _$v ??
-        new _$AppState._(
-            pageID: BuiltValueNullFieldError.checkNotNull(
-                pageID, 'AppState', 'pageID'),
-            tasks: tasks,
-            status: BuiltValueNullFieldError.checkNotNull(
-                status, 'AppState', 'status'));
+    _$AppState _$result;
+    try {
+      _$result = _$v ??
+          new _$AppState._(
+              pageID: BuiltValueNullFieldError.checkNotNull(
+                  pageID, 'AppState', 'pageID'),
+              tasks: tasks.build(),
+              status: BuiltValueNullFieldError.checkNotNull(
+                  status, 'AppState', 'status'));
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'tasks';
+        tasks.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'AppState', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

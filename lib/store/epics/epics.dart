@@ -31,7 +31,7 @@ class AppMiddleware implements EpicClass<AppState> {
         try {
           yield ChangeStatusReducerAppAction.create(newStatus: "isLoading");
           final tasks = await repository.getAllTasks();
-          yield ChangeTasksReducerAppAction.create(newTasks: tasks.toList());
+          yield ChangeTasksReducerAppAction.create(newTasks: tasks);
         } catch (e, stackTrack) {
           yield ChangeStatusReducerAppAction.create(newStatus: "error");
           log(
@@ -57,7 +57,7 @@ class AppMiddleware implements EpicClass<AppState> {
           final newTask = Task((b) => b..title = action.task);
           await repository.createTask(newTask);
           final tasks = await repository.getAllTasks();
-          yield ChangeTasksReducerAppAction.create(newTasks: tasks.toList());
+          yield ChangeTasksReducerAppAction.create(newTasks: tasks);
         } catch (e, stackTrack) {
           yield ChangeStatusReducerAppAction.create(newStatus: "error");
           log(
@@ -82,7 +82,7 @@ class AppMiddleware implements EpicClass<AppState> {
           yield ChangeStatusReducerAppAction.create(newStatus: "isLoading");
           await repository.updateTask(action.task);
           final tasks = await repository.getAllTasks();
-          yield ChangeTasksReducerAppAction.create(newTasks: tasks.toList());
+          yield ChangeTasksReducerAppAction.create(newTasks: tasks);
         } catch (e, stackTrack) {
           yield ChangeStatusReducerAppAction.create(newStatus: "error");
           log(
@@ -107,7 +107,7 @@ class AppMiddleware implements EpicClass<AppState> {
           yield ChangeStatusReducerAppAction.create(newStatus: "isLoading");
           await repository.deleteTask(action.task);
           final tasks = await repository.getAllTasks();
-          yield ChangeTasksReducerAppAction.create(newTasks: tasks.toList());
+          yield ChangeTasksReducerAppAction.create(newTasks: tasks);
         } catch (e, stackTrack) {
           yield ChangeStatusReducerAppAction.create(newStatus: "error");
           log(

@@ -1,3 +1,4 @@
+import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:task_management_redux/store/models/task.dart';
 
@@ -24,9 +25,11 @@ abstract class ChangeTasksReducerAppAction
         Built<ChangeTasksReducerAppAction, ChangeTasksReducerAppActionBuilder>,
         AppAction {
   ChangeTasksReducerAppAction._();
-  List<Task> get tasks;
-  factory ChangeTasksReducerAppAction.create({required List<Task> newTasks}) =>
-      ChangeTasksReducerAppAction((update) => update..tasks = newTasks);
+  BuiltList<Task> get tasks;
+  factory ChangeTasksReducerAppAction.create(
+          {required BuiltList<Task> newTasks}) =>
+      ChangeTasksReducerAppAction(
+          (update) => update..tasks = newTasks.toBuilder());
   factory ChangeTasksReducerAppAction(
           [void Function(ChangeTasksReducerAppActionBuilder) updates]) =
       _$ChangeTasksReducerAppAction;
