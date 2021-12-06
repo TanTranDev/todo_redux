@@ -6,83 +6,93 @@ part of 'action.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-class _$DoGetAllTask extends DoGetAllTask {
-  factory _$DoGetAllTask([void Function(DoGetAllTaskBuilder)? updates]) =>
-      (new DoGetAllTaskBuilder()..update(updates)).build();
+class _$DoGetAllTaskTaskActionEpics extends DoGetAllTaskTaskActionEpics {
+  factory _$DoGetAllTaskTaskActionEpics(
+          [void Function(DoGetAllTaskTaskActionEpicsBuilder)? updates]) =>
+      (new DoGetAllTaskTaskActionEpicsBuilder()..update(updates)).build();
 
-  _$DoGetAllTask._() : super._();
+  _$DoGetAllTaskTaskActionEpics._() : super._();
 
   @override
-  DoGetAllTask rebuild(void Function(DoGetAllTaskBuilder) updates) =>
+  DoGetAllTaskTaskActionEpics rebuild(
+          void Function(DoGetAllTaskTaskActionEpicsBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  DoGetAllTaskBuilder toBuilder() => new DoGetAllTaskBuilder()..replace(this);
+  DoGetAllTaskTaskActionEpicsBuilder toBuilder() =>
+      new DoGetAllTaskTaskActionEpicsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is DoGetAllTask;
+    return other is DoGetAllTaskTaskActionEpics;
   }
 
   @override
   int get hashCode {
-    return 476858770;
+    return 259601537;
   }
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper('DoGetAllTask').toString();
+    return newBuiltValueToStringHelper('DoGetAllTaskTaskActionEpics')
+        .toString();
   }
 }
 
-class DoGetAllTaskBuilder
-    implements Builder<DoGetAllTask, DoGetAllTaskBuilder> {
-  _$DoGetAllTask? _$v;
+class DoGetAllTaskTaskActionEpicsBuilder
+    implements
+        Builder<DoGetAllTaskTaskActionEpics,
+            DoGetAllTaskTaskActionEpicsBuilder> {
+  _$DoGetAllTaskTaskActionEpics? _$v;
 
-  DoGetAllTaskBuilder();
+  DoGetAllTaskTaskActionEpicsBuilder();
 
   @override
-  void replace(DoGetAllTask other) {
+  void replace(DoGetAllTaskTaskActionEpics other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$DoGetAllTask;
+    _$v = other as _$DoGetAllTaskTaskActionEpics;
   }
 
   @override
-  void update(void Function(DoGetAllTaskBuilder)? updates) {
+  void update(void Function(DoGetAllTaskTaskActionEpicsBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$DoGetAllTask build() {
-    final _$result = _$v ?? new _$DoGetAllTask._();
+  _$DoGetAllTaskTaskActionEpics build() {
+    final _$result = _$v ?? new _$DoGetAllTaskTaskActionEpics._();
     replace(_$result);
     return _$result;
   }
 }
 
-class _$DoCreateTask extends DoCreateTask {
+class _$DoCreateTaskTaskActionEpics extends DoCreateTaskTaskActionEpics {
   @override
   final String task;
 
-  factory _$DoCreateTask([void Function(DoCreateTaskBuilder)? updates]) =>
-      (new DoCreateTaskBuilder()..update(updates)).build();
+  factory _$DoCreateTaskTaskActionEpics(
+          [void Function(DoCreateTaskTaskActionEpicsBuilder)? updates]) =>
+      (new DoCreateTaskTaskActionEpicsBuilder()..update(updates)).build();
 
-  _$DoCreateTask._({required this.task}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(task, 'DoCreateTask', 'task');
+  _$DoCreateTaskTaskActionEpics._({required this.task}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        task, 'DoCreateTaskTaskActionEpics', 'task');
   }
 
   @override
-  DoCreateTask rebuild(void Function(DoCreateTaskBuilder) updates) =>
+  DoCreateTaskTaskActionEpics rebuild(
+          void Function(DoCreateTaskTaskActionEpicsBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  DoCreateTaskBuilder toBuilder() => new DoCreateTaskBuilder()..replace(this);
+  DoCreateTaskTaskActionEpicsBuilder toBuilder() =>
+      new DoCreateTaskTaskActionEpicsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is DoCreateTask && task == other.task;
+    return other is DoCreateTaskTaskActionEpics && task == other.task;
   }
 
   @override
@@ -92,22 +102,25 @@ class _$DoCreateTask extends DoCreateTask {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('DoCreateTask')..add('task', task))
+    return (newBuiltValueToStringHelper('DoCreateTaskTaskActionEpics')
+          ..add('task', task))
         .toString();
   }
 }
 
-class DoCreateTaskBuilder
-    implements Builder<DoCreateTask, DoCreateTaskBuilder> {
-  _$DoCreateTask? _$v;
+class DoCreateTaskTaskActionEpicsBuilder
+    implements
+        Builder<DoCreateTaskTaskActionEpics,
+            DoCreateTaskTaskActionEpicsBuilder> {
+  _$DoCreateTaskTaskActionEpics? _$v;
 
   String? _task;
   String? get task => _$this._task;
   set task(String? task) => _$this._task = task;
 
-  DoCreateTaskBuilder();
+  DoCreateTaskTaskActionEpicsBuilder();
 
-  DoCreateTaskBuilder get _$this {
+  DoCreateTaskTaskActionEpicsBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _task = $v.task;
@@ -117,49 +130,53 @@ class DoCreateTaskBuilder
   }
 
   @override
-  void replace(DoCreateTask other) {
+  void replace(DoCreateTaskTaskActionEpics other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$DoCreateTask;
+    _$v = other as _$DoCreateTaskTaskActionEpics;
   }
 
   @override
-  void update(void Function(DoCreateTaskBuilder)? updates) {
+  void update(void Function(DoCreateTaskTaskActionEpicsBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$DoCreateTask build() {
+  _$DoCreateTaskTaskActionEpics build() {
     final _$result = _$v ??
-        new _$DoCreateTask._(
+        new _$DoCreateTaskTaskActionEpics._(
             task: BuiltValueNullFieldError.checkNotNull(
-                task, 'DoCreateTask', 'task'));
+                task, 'DoCreateTaskTaskActionEpics', 'task'));
     replace(_$result);
     return _$result;
   }
 }
 
-class _$DoDeleteTask extends DoDeleteTask {
+class _$DoDeleteTaskTaskActionEpics extends DoDeleteTaskTaskActionEpics {
   @override
   final Task task;
 
-  factory _$DoDeleteTask([void Function(DoDeleteTaskBuilder)? updates]) =>
-      (new DoDeleteTaskBuilder()..update(updates)).build();
+  factory _$DoDeleteTaskTaskActionEpics(
+          [void Function(DoDeleteTaskTaskActionEpicsBuilder)? updates]) =>
+      (new DoDeleteTaskTaskActionEpicsBuilder()..update(updates)).build();
 
-  _$DoDeleteTask._({required this.task}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(task, 'DoDeleteTask', 'task');
+  _$DoDeleteTaskTaskActionEpics._({required this.task}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        task, 'DoDeleteTaskTaskActionEpics', 'task');
   }
 
   @override
-  DoDeleteTask rebuild(void Function(DoDeleteTaskBuilder) updates) =>
+  DoDeleteTaskTaskActionEpics rebuild(
+          void Function(DoDeleteTaskTaskActionEpicsBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  DoDeleteTaskBuilder toBuilder() => new DoDeleteTaskBuilder()..replace(this);
+  DoDeleteTaskTaskActionEpicsBuilder toBuilder() =>
+      new DoDeleteTaskTaskActionEpicsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is DoDeleteTask && task == other.task;
+    return other is DoDeleteTaskTaskActionEpics && task == other.task;
   }
 
   @override
@@ -169,22 +186,25 @@ class _$DoDeleteTask extends DoDeleteTask {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('DoDeleteTask')..add('task', task))
+    return (newBuiltValueToStringHelper('DoDeleteTaskTaskActionEpics')
+          ..add('task', task))
         .toString();
   }
 }
 
-class DoDeleteTaskBuilder
-    implements Builder<DoDeleteTask, DoDeleteTaskBuilder> {
-  _$DoDeleteTask? _$v;
+class DoDeleteTaskTaskActionEpicsBuilder
+    implements
+        Builder<DoDeleteTaskTaskActionEpics,
+            DoDeleteTaskTaskActionEpicsBuilder> {
+  _$DoDeleteTaskTaskActionEpics? _$v;
 
   TaskBuilder? _task;
   TaskBuilder get task => _$this._task ??= new TaskBuilder();
   set task(TaskBuilder? task) => _$this._task = task;
 
-  DoDeleteTaskBuilder();
+  DoDeleteTaskTaskActionEpicsBuilder();
 
-  DoDeleteTaskBuilder get _$this {
+  DoDeleteTaskTaskActionEpicsBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _task = $v.task.toBuilder();
@@ -194,21 +214,21 @@ class DoDeleteTaskBuilder
   }
 
   @override
-  void replace(DoDeleteTask other) {
+  void replace(DoDeleteTaskTaskActionEpics other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$DoDeleteTask;
+    _$v = other as _$DoDeleteTaskTaskActionEpics;
   }
 
   @override
-  void update(void Function(DoDeleteTaskBuilder)? updates) {
+  void update(void Function(DoDeleteTaskTaskActionEpicsBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$DoDeleteTask build() {
-    _$DoDeleteTask _$result;
+  _$DoDeleteTaskTaskActionEpics build() {
+    _$DoDeleteTaskTaskActionEpics _$result;
     try {
-      _$result = _$v ?? new _$DoDeleteTask._(task: task.build());
+      _$result = _$v ?? new _$DoDeleteTaskTaskActionEpics._(task: task.build());
     } catch (_) {
       late String _$failedField;
       try {
@@ -216,7 +236,7 @@ class DoDeleteTaskBuilder
         task.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'DoDeleteTask', _$failedField, e.toString());
+            'DoDeleteTaskTaskActionEpics', _$failedField, e.toString());
       }
       rethrow;
     }
@@ -225,28 +245,32 @@ class DoDeleteTaskBuilder
   }
 }
 
-class _$DoUpdateTask extends DoUpdateTask {
+class _$DoUpdateTaskTaskActionEpics extends DoUpdateTaskTaskActionEpics {
   @override
   final Task task;
 
-  factory _$DoUpdateTask([void Function(DoUpdateTaskBuilder)? updates]) =>
-      (new DoUpdateTaskBuilder()..update(updates)).build();
+  factory _$DoUpdateTaskTaskActionEpics(
+          [void Function(DoUpdateTaskTaskActionEpicsBuilder)? updates]) =>
+      (new DoUpdateTaskTaskActionEpicsBuilder()..update(updates)).build();
 
-  _$DoUpdateTask._({required this.task}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(task, 'DoUpdateTask', 'task');
+  _$DoUpdateTaskTaskActionEpics._({required this.task}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        task, 'DoUpdateTaskTaskActionEpics', 'task');
   }
 
   @override
-  DoUpdateTask rebuild(void Function(DoUpdateTaskBuilder) updates) =>
+  DoUpdateTaskTaskActionEpics rebuild(
+          void Function(DoUpdateTaskTaskActionEpicsBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  DoUpdateTaskBuilder toBuilder() => new DoUpdateTaskBuilder()..replace(this);
+  DoUpdateTaskTaskActionEpicsBuilder toBuilder() =>
+      new DoUpdateTaskTaskActionEpicsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is DoUpdateTask && task == other.task;
+    return other is DoUpdateTaskTaskActionEpics && task == other.task;
   }
 
   @override
@@ -256,22 +280,25 @@ class _$DoUpdateTask extends DoUpdateTask {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('DoUpdateTask')..add('task', task))
+    return (newBuiltValueToStringHelper('DoUpdateTaskTaskActionEpics')
+          ..add('task', task))
         .toString();
   }
 }
 
-class DoUpdateTaskBuilder
-    implements Builder<DoUpdateTask, DoUpdateTaskBuilder> {
-  _$DoUpdateTask? _$v;
+class DoUpdateTaskTaskActionEpicsBuilder
+    implements
+        Builder<DoUpdateTaskTaskActionEpics,
+            DoUpdateTaskTaskActionEpicsBuilder> {
+  _$DoUpdateTaskTaskActionEpics? _$v;
 
   TaskBuilder? _task;
   TaskBuilder get task => _$this._task ??= new TaskBuilder();
   set task(TaskBuilder? task) => _$this._task = task;
 
-  DoUpdateTaskBuilder();
+  DoUpdateTaskTaskActionEpicsBuilder();
 
-  DoUpdateTaskBuilder get _$this {
+  DoUpdateTaskTaskActionEpicsBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _task = $v.task.toBuilder();
@@ -281,21 +308,21 @@ class DoUpdateTaskBuilder
   }
 
   @override
-  void replace(DoUpdateTask other) {
+  void replace(DoUpdateTaskTaskActionEpics other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$DoUpdateTask;
+    _$v = other as _$DoUpdateTaskTaskActionEpics;
   }
 
   @override
-  void update(void Function(DoUpdateTaskBuilder)? updates) {
+  void update(void Function(DoUpdateTaskTaskActionEpicsBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$DoUpdateTask build() {
-    _$DoUpdateTask _$result;
+  _$DoUpdateTaskTaskActionEpics build() {
+    _$DoUpdateTaskTaskActionEpics _$result;
     try {
-      _$result = _$v ?? new _$DoUpdateTask._(task: task.build());
+      _$result = _$v ?? new _$DoUpdateTaskTaskActionEpics._(task: task.build());
     } catch (_) {
       late String _$failedField;
       try {
@@ -303,7 +330,7 @@ class DoUpdateTaskBuilder
         task.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'DoUpdateTask', _$failedField, e.toString());
+            'DoUpdateTaskTaskActionEpics', _$failedField, e.toString());
       }
       rethrow;
     }
@@ -312,29 +339,32 @@ class DoUpdateTaskBuilder
   }
 }
 
-class _$DoChangeStatus extends DoChangeStatus {
+class _$DoChangeStatusAppActionReducer extends DoChangeStatusAppActionReducer {
   @override
   final String status;
 
-  factory _$DoChangeStatus([void Function(DoChangeStatusBuilder)? updates]) =>
-      (new DoChangeStatusBuilder()..update(updates)).build();
+  factory _$DoChangeStatusAppActionReducer(
+          [void Function(DoChangeStatusAppActionReducerBuilder)? updates]) =>
+      (new DoChangeStatusAppActionReducerBuilder()..update(updates)).build();
 
-  _$DoChangeStatus._({required this.status}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(status, 'DoChangeStatus', 'status');
+  _$DoChangeStatusAppActionReducer._({required this.status}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        status, 'DoChangeStatusAppActionReducer', 'status');
   }
 
   @override
-  DoChangeStatus rebuild(void Function(DoChangeStatusBuilder) updates) =>
+  DoChangeStatusAppActionReducer rebuild(
+          void Function(DoChangeStatusAppActionReducerBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  DoChangeStatusBuilder toBuilder() =>
-      new DoChangeStatusBuilder()..replace(this);
+  DoChangeStatusAppActionReducerBuilder toBuilder() =>
+      new DoChangeStatusAppActionReducerBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is DoChangeStatus && status == other.status;
+    return other is DoChangeStatusAppActionReducer && status == other.status;
   }
 
   @override
@@ -344,23 +374,25 @@ class _$DoChangeStatus extends DoChangeStatus {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('DoChangeStatus')
+    return (newBuiltValueToStringHelper('DoChangeStatusAppActionReducer')
           ..add('status', status))
         .toString();
   }
 }
 
-class DoChangeStatusBuilder
-    implements Builder<DoChangeStatus, DoChangeStatusBuilder> {
-  _$DoChangeStatus? _$v;
+class DoChangeStatusAppActionReducerBuilder
+    implements
+        Builder<DoChangeStatusAppActionReducer,
+            DoChangeStatusAppActionReducerBuilder> {
+  _$DoChangeStatusAppActionReducer? _$v;
 
   String? _status;
   String? get status => _$this._status;
   set status(String? status) => _$this._status = status;
 
-  DoChangeStatusBuilder();
+  DoChangeStatusAppActionReducerBuilder();
 
-  DoChangeStatusBuilder get _$this {
+  DoChangeStatusAppActionReducerBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _status = $v.status;
@@ -370,49 +402,53 @@ class DoChangeStatusBuilder
   }
 
   @override
-  void replace(DoChangeStatus other) {
+  void replace(DoChangeStatusAppActionReducer other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$DoChangeStatus;
+    _$v = other as _$DoChangeStatusAppActionReducer;
   }
 
   @override
-  void update(void Function(DoChangeStatusBuilder)? updates) {
+  void update(void Function(DoChangeStatusAppActionReducerBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$DoChangeStatus build() {
+  _$DoChangeStatusAppActionReducer build() {
     final _$result = _$v ??
-        new _$DoChangeStatus._(
+        new _$DoChangeStatusAppActionReducer._(
             status: BuiltValueNullFieldError.checkNotNull(
-                status, 'DoChangeStatus', 'status'));
+                status, 'DoChangeStatusAppActionReducer', 'status'));
     replace(_$result);
     return _$result;
   }
 }
 
-class _$DoChangeTasks extends DoChangeTasks {
+class _$DoChangeTasksAppActionReducer extends DoChangeTasksAppActionReducer {
   @override
   final List<Task> tasks;
 
-  factory _$DoChangeTasks([void Function(DoChangeTasksBuilder)? updates]) =>
-      (new DoChangeTasksBuilder()..update(updates)).build();
+  factory _$DoChangeTasksAppActionReducer(
+          [void Function(DoChangeTasksAppActionReducerBuilder)? updates]) =>
+      (new DoChangeTasksAppActionReducerBuilder()..update(updates)).build();
 
-  _$DoChangeTasks._({required this.tasks}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(tasks, 'DoChangeTasks', 'tasks');
+  _$DoChangeTasksAppActionReducer._({required this.tasks}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        tasks, 'DoChangeTasksAppActionReducer', 'tasks');
   }
 
   @override
-  DoChangeTasks rebuild(void Function(DoChangeTasksBuilder) updates) =>
+  DoChangeTasksAppActionReducer rebuild(
+          void Function(DoChangeTasksAppActionReducerBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  DoChangeTasksBuilder toBuilder() => new DoChangeTasksBuilder()..replace(this);
+  DoChangeTasksAppActionReducerBuilder toBuilder() =>
+      new DoChangeTasksAppActionReducerBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is DoChangeTasks && tasks == other.tasks;
+    return other is DoChangeTasksAppActionReducer && tasks == other.tasks;
   }
 
   @override
@@ -422,22 +458,25 @@ class _$DoChangeTasks extends DoChangeTasks {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('DoChangeTasks')..add('tasks', tasks))
+    return (newBuiltValueToStringHelper('DoChangeTasksAppActionReducer')
+          ..add('tasks', tasks))
         .toString();
   }
 }
 
-class DoChangeTasksBuilder
-    implements Builder<DoChangeTasks, DoChangeTasksBuilder> {
-  _$DoChangeTasks? _$v;
+class DoChangeTasksAppActionReducerBuilder
+    implements
+        Builder<DoChangeTasksAppActionReducer,
+            DoChangeTasksAppActionReducerBuilder> {
+  _$DoChangeTasksAppActionReducer? _$v;
 
   List<Task>? _tasks;
   List<Task>? get tasks => _$this._tasks;
   set tasks(List<Task>? tasks) => _$this._tasks = tasks;
 
-  DoChangeTasksBuilder();
+  DoChangeTasksAppActionReducerBuilder();
 
-  DoChangeTasksBuilder get _$this {
+  DoChangeTasksAppActionReducerBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _tasks = $v.tasks;
@@ -447,22 +486,22 @@ class DoChangeTasksBuilder
   }
 
   @override
-  void replace(DoChangeTasks other) {
+  void replace(DoChangeTasksAppActionReducer other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$DoChangeTasks;
+    _$v = other as _$DoChangeTasksAppActionReducer;
   }
 
   @override
-  void update(void Function(DoChangeTasksBuilder)? updates) {
+  void update(void Function(DoChangeTasksAppActionReducerBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$DoChangeTasks build() {
+  _$DoChangeTasksAppActionReducer build() {
     final _$result = _$v ??
-        new _$DoChangeTasks._(
+        new _$DoChangeTasksAppActionReducer._(
             tasks: BuiltValueNullFieldError.checkNotNull(
-                tasks, 'DoChangeTasks', 'tasks'));
+                tasks, 'DoChangeTasksAppActionReducer', 'tasks'));
     replace(_$result);
     return _$result;
   }

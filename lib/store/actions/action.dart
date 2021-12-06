@@ -1,64 +1,88 @@
-import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:task_management_redux/store/models/task.dart';
 
 part 'action.g.dart';
 
-abstract class DoApp {}
+abstract class AppAction {}
 
-abstract class DoGetAllTask
-    implements Built<DoGetAllTask, DoGetAllTaskBuilder>, DoApp {
-  DoGetAllTask._();
-  factory DoGetAllTask([void Function(DoGetAllTaskBuilder) updates]) =
-      _$DoGetAllTask;
+abstract class TaskAction {}
+
+abstract class DoGetAllTaskTaskActionEpics
+    implements
+        Built<DoGetAllTaskTaskActionEpics, DoGetAllTaskTaskActionEpicsBuilder>,
+        TaskAction {
+  DoGetAllTaskTaskActionEpics._();
+  factory DoGetAllTaskTaskActionEpics(
+          [void Function(DoGetAllTaskTaskActionEpicsBuilder) updates]) =
+      _$DoGetAllTaskTaskActionEpics;
 }
 
-abstract class DoCreateTask
-    implements Built<DoCreateTask, DoCreateTaskBuilder>, DoApp {
-  DoCreateTask._();
+abstract class DoCreateTaskTaskActionEpics
+    implements
+        Built<DoCreateTaskTaskActionEpics, DoCreateTaskTaskActionEpicsBuilder>,
+        TaskAction {
+  DoCreateTaskTaskActionEpics._();
   String get task;
-  factory DoCreateTask.create({required String newTask}) =>
-      DoCreateTask((update) => update..task = newTask);
-  factory DoCreateTask([void Function(DoCreateTaskBuilder) updates]) =
-      _$DoCreateTask;
+  factory DoCreateTaskTaskActionEpics.create({required String newTask}) =>
+      DoCreateTaskTaskActionEpics((update) => update..task = newTask);
+  factory DoCreateTaskTaskActionEpics(
+          [void Function(DoCreateTaskTaskActionEpicsBuilder) updates]) =
+      _$DoCreateTaskTaskActionEpics;
 }
 
-abstract class DoDeleteTask
-    implements Built<DoDeleteTask, DoDeleteTaskBuilder>, DoApp {
-  DoDeleteTask._();
+abstract class DoDeleteTaskTaskActionEpics
+    implements
+        Built<DoDeleteTaskTaskActionEpics, DoDeleteTaskTaskActionEpicsBuilder>,
+        TaskAction {
+  DoDeleteTaskTaskActionEpics._();
   Task get task;
-  factory DoDeleteTask.create({required Task deleteTask}) =>
-      DoDeleteTask((update) => update..task = deleteTask.toBuilder());
-  factory DoDeleteTask([void Function(DoDeleteTaskBuilder) updates]) =
-      _$DoDeleteTask;
+  factory DoDeleteTaskTaskActionEpics.create({required Task deleteTask}) =>
+      DoDeleteTaskTaskActionEpics(
+          (update) => update..task = deleteTask.toBuilder());
+  factory DoDeleteTaskTaskActionEpics(
+          [void Function(DoDeleteTaskTaskActionEpicsBuilder) updates]) =
+      _$DoDeleteTaskTaskActionEpics;
 }
 
-abstract class DoUpdateTask
-    implements Built<DoUpdateTask, DoUpdateTaskBuilder>, DoApp {
-  DoUpdateTask._();
+abstract class DoUpdateTaskTaskActionEpics
+    implements
+        Built<DoUpdateTaskTaskActionEpics, DoUpdateTaskTaskActionEpicsBuilder>,
+        TaskAction {
+  DoUpdateTaskTaskActionEpics._();
   Task get task;
-  factory DoUpdateTask.create({required Task updateTask}) =>
-      DoUpdateTask((update) => update..task = updateTask.toBuilder());
-  factory DoUpdateTask([void Function(DoUpdateTaskBuilder) updates]) =
-      _$DoUpdateTask;
+  factory DoUpdateTaskTaskActionEpics.create({required Task updateTask}) =>
+      DoUpdateTaskTaskActionEpics(
+          (update) => update..task = updateTask.toBuilder());
+  factory DoUpdateTaskTaskActionEpics(
+          [void Function(DoUpdateTaskTaskActionEpicsBuilder) updates]) =
+      _$DoUpdateTaskTaskActionEpics;
 }
 
-abstract class DoChangeStatus
-    implements Built<DoChangeStatus, DoChangeStatusBuilder>, DoApp {
-  DoChangeStatus._();
+abstract class DoChangeStatusAppActionReducer
+    implements
+        Built<DoChangeStatusAppActionReducer,
+            DoChangeStatusAppActionReducerBuilder>,
+        AppAction {
+  DoChangeStatusAppActionReducer._();
   String get status;
-  factory DoChangeStatus.create({required String newStatus}) =>
-      DoChangeStatus((update) => update..status = newStatus);
-  factory DoChangeStatus([void Function(DoChangeStatusBuilder) updates]) =
-      _$DoChangeStatus;
+  factory DoChangeStatusAppActionReducer.create({required String newStatus}) =>
+      DoChangeStatusAppActionReducer((update) => update..status = newStatus);
+  factory DoChangeStatusAppActionReducer(
+          [void Function(DoChangeStatusAppActionReducerBuilder) updates]) =
+      _$DoChangeStatusAppActionReducer;
 }
 
-abstract class DoChangeTasks
-    implements Built<DoChangeTasks, DoChangeTasksBuilder>, DoApp {
-  DoChangeTasks._();
+abstract class DoChangeTasksAppActionReducer
+    implements
+        Built<DoChangeTasksAppActionReducer,
+            DoChangeTasksAppActionReducerBuilder>,
+        AppAction {
+  DoChangeTasksAppActionReducer._();
   List<Task> get tasks;
-  factory DoChangeTasks.create({required List<Task> newTasks}) =>
-      DoChangeTasks((update) => update..tasks = newTasks);
-  factory DoChangeTasks([void Function(DoChangeTasksBuilder) updates]) =
-      _$DoChangeTasks;
+  factory DoChangeTasksAppActionReducer.create(
+          {required List<Task> newTasks}) =>
+      DoChangeTasksAppActionReducer((update) => update..tasks = newTasks);
+  factory DoChangeTasksAppActionReducer(
+          [void Function(DoChangeTasksAppActionReducerBuilder) updates]) =
+      _$DoChangeTasksAppActionReducer;
 }
