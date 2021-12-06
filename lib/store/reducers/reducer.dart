@@ -3,14 +3,18 @@ import 'package:task_management_redux/store/models/app_state.dart';
 import 'package:redux/redux.dart';
 
 final Reducer<AppState> appStateReducer = combineReducers<AppState>([
-  TypedReducer<AppState, DoChangeStatus>(reducerChangeStatus),
-  TypedReducer<AppState, DoChangeTasks>(reducerChangeTasks),
+  TypedReducer<AppState, DoChangeStatusAppActionReducer>(
+      _reducerChangeStatusAppState),
+  TypedReducer<AppState, DoChangeTasksAppActionReducer>(
+      _reducerChangeTasksAppState),
 ]);
 
-AppState reducerChangeStatus(AppState state, DoChangeStatus action) {
+AppState _reducerChangeStatusAppState(
+    AppState state, DoChangeStatusAppActionReducer action) {
   return state.rebuild((p0) => p0..status = action.status);
 }
 
-AppState reducerChangeTasks(AppState state, DoChangeTasks action) {
+AppState _reducerChangeTasksAppState(
+    AppState state, DoChangeTasksAppActionReducer action) {
   return state.rebuild((p0) => p0..tasks = action.tasks);
 }
