@@ -33,9 +33,9 @@ class TodoApp extends StatelessWidget {
         home: StoreConnector<AppState, AppStateViewModel>(
             distinct: true,
             converter: (Store<AppState> store) =>
-                AppStateViewModel.create(store),
+                AppStateViewModel.create(store: store),
             onInitialBuild: (viewModel) {
-              viewModel.doAction(action: GetAllTaskMiddlewareTaskAction());
+              viewModel.dispatch(action: GetAllTaskMiddlewareTaskAction());
             },
             builder: (context, viewModel) {
               final tasks = viewModel.tasks;
@@ -61,7 +61,7 @@ class TodoApp extends StatelessWidget {
                                             ? true
                                             : false,
                                         onChanged: (bool? value) {
-                                          viewModel.doAction(
+                                          viewModel.dispatch(
                                             action:
                                                 UpdateTaskMiddlewareTaskAction
                                                     .create(
@@ -70,7 +70,7 @@ class TodoApp extends StatelessWidget {
                                           );
                                         }),
                                     onLongPress: () {
-                                      viewModel.doAction(
+                                      viewModel.dispatch(
                                         action: DeleteTaskMiddlewareTaskAction
                                             .create(deleteTask: tasks[index]),
                                       );
@@ -137,7 +137,8 @@ class _FormFieldWidgetState extends State<FormFieldWidget> {
   Widget build(BuildContext context) {
     return StoreConnector<AppState, AppStateViewModel>(
         distinct: true,
-        converter: (Store<AppState> store) => AppStateViewModel.create(store),
+        converter: (Store<AppState> store) =>
+            AppStateViewModel.create(store: store),
         onInitialBuild: (viewModel) {},
         builder: (context, viewModel) {
           return AlertDialog(
@@ -166,7 +167,7 @@ class _FormFieldWidgetState extends State<FormFieldWidget> {
                   GestureDetector(
                     key: const Key("Button create"),
                     onTap: () async {
-                      viewModel.doAction(
+                      viewModel.dispatch(
                           action: CreateTaskMiddlewareTaskAction.create(
                               newTask: value));
                       Navigator.of(context).pop();
