@@ -35,7 +35,7 @@ class TodoApp extends StatelessWidget {
             converter: (Store<AppState> store) =>
                 AppStateViewModel.create(store),
             onInitialBuild: (viewModel) {
-              viewModel.doAction(action: DoGetAllTask());
+              viewModel.doAction(action: DoGetAllTaskTaskActionEpics());
             },
             builder: (context, viewModel) {
               final tasks = viewModel.tasks;
@@ -56,20 +56,22 @@ class TodoApp extends StatelessWidget {
                                   return ListTile(
                                     title: Text(tasks[index].title ?? ""),
                                     trailing: Checkbox(
-                                      key: const Key("check box of the task"),
+                                        key: const Key("check box of the task"),
                                         value: tasks[index].isDone == 1
                                             ? true
                                             : false,
                                         onChanged: (bool? value) {
                                           viewModel.doAction(
-                                            action: DoUpdateTask.create(
-                                                updateTask: tasks[index]),
+                                            action: DoUpdateTaskTaskActionEpics
+                                                .create(
+                                                    updateTask: tasks[index]),
                                           );
                                         }),
                                     onLongPress: () {
                                       viewModel.doAction(
-                                        action: DoDeleteTask.create(
-                                            deleteTask: tasks[index]),
+                                        action:
+                                            DoDeleteTaskTaskActionEpics.create(
+                                                deleteTask: tasks[index]),
                                       );
                                     },
                                   );
@@ -164,7 +166,8 @@ class _FormFieldWidgetState extends State<FormFieldWidget> {
                     key: const Key("Button create"),
                     onTap: () async {
                       viewModel.doAction(
-                          action: DoCreateTask.create(newTask: value));
+                          action: DoCreateTaskTaskActionEpics.create(
+                              newTask: value));
                       Navigator.of(context).pop();
                     },
                     child: Container(
