@@ -6,13 +6,13 @@ import 'package:task_management_redux/store/models/serializers.dart';
 import 'package:task_management_redux/store/models/task.dart';
 
 class TaskSqliteService implements AbstractTaskRepository {
-  final OfflineDbProvider taskClient;
+  final OfflineDbProvider _taskClient;
 
-  TaskSqliteService(this.taskClient);
+  TaskSqliteService(this._taskClient);
 
   @override
   Future<int> createTask(CreateTaskMiddlewareTaskAction action) async {
-    var db = await taskClient.database;
+    var db = await _taskClient.database;
     await db.rawInsert(
         "INSERT INTO Task (title, isDone)"
         " VALUES (?,?)",
@@ -22,7 +22,7 @@ class TaskSqliteService implements AbstractTaskRepository {
 
   @override
   Future<int> deleteTask(DeleteTaskMiddlewareTaskAction action) async {
-    var db = await taskClient.database;
+    var db = await _taskClient.database;
     await db.rawDelete("DELETE FROM Task WHERE id = ?", [action.task.id]);
     return 0;
   }
@@ -30,7 +30,7 @@ class TaskSqliteService implements AbstractTaskRepository {
   @override
   Future<BuiltList<Task>> getAllTasks(
       GetAllTaskMiddlewareTaskAction action) async {
-    var db = await taskClient.database;
+    var db = await _taskClient.database;
     var res = await db.query("Task");
     if (res.isEmpty) {
       return BuiltList();
