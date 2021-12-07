@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux_epics/redux_epics.dart';
-import 'package:task_management_redux/repository/repository.dart';
+import 'package:task_management_redux/repository/offline_db_provider.dart';
 import 'package:redux/redux.dart';
+import 'package:task_management_redux/repository/task_sqlite_service.dart';
 import 'package:task_management_redux/store/actions/task_actions.dart';
 import 'package:task_management_redux/store/epics/epics.dart';
 import 'package:task_management_redux/store/models/app_state.dart';
@@ -12,7 +13,7 @@ import 'package:task_management_redux/store/selectors/app_state_view_model.dart'
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  final repository = Repository();
+  final repository = TaskSqliteService(OfflineDbProvider.provider);
   final store = Store<AppState>(appStateReducer,
       initialState: AppState(),
       middleware: [EpicMiddleware<AppState>(AppMiddleware(repository))]);

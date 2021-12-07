@@ -6,29 +6,6 @@ import 'package:built_value/built_value.dart';
 
 part 'app_state_view_model.g.dart';
 
-// class AppStateViewModel {
-//   final String status;
-//   final List<Task> tasks;
-//   final Function({required dynamic action}) doAction;
-//
-//   AppStateViewModel({
-//     required this.status,
-//     required this.tasks,
-//     required this.doAction,
-//   });
-//
-//   factory AppStateViewModel.create(Store<AppState> store) {
-//     onDoAction({required dynamic action}) {
-//       store.dispatch(action);
-//     }
-//
-//     return AppStateViewModel(
-//         status: store.state.status,
-//         tasks: store.state.tasks.isNotEmpty ? store.state.tasks.toList() : [],
-//         doAction: onDoAction);
-//   }
-// }
-
 abstract class ViewModel {}
 
 abstract class AppStateViewModel

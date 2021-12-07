@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:redux_epics/redux_epics.dart';
-import 'package:task_management_redux/repository/repository.dart';
+import 'package:task_management_redux/repository/task_repository.dart';
 import 'package:task_management_redux/store/actions/task_actions.dart';
 import 'package:task_management_redux/store/actions/app_actions.dart';
 import 'package:task_management_redux/store/epics/epics.dart';
@@ -13,11 +13,12 @@ import 'package:redux/redux.dart';
 import 'package:task_management_redux/store/reducers/reducer.dart';
 import 'middleware_test.mocks.dart';
 
-@GenerateMocks([AbstractRepository])
+@GenerateMocks([AbstractTaskRepository])
 void main() {
-  MockAbstractRepository mockAbstractRepository = MockAbstractRepository();
+  MockAbstractTaskRepository mockAbstractTaskRepository =
+      MockAbstractTaskRepository();
   AppState firstState = AppState();
-  AppMiddleware appMiddleware = AppMiddleware(mockAbstractRepository);
+  AppMiddleware appMiddleware = AppMiddleware(mockAbstractTaskRepository);
   final store = Store<AppState>(appStateReducer,
       initialState: firstState,
       middleware: [EpicMiddleware<AppState>(appMiddleware)]);
@@ -34,7 +35,9 @@ void main() {
           store,
         ),
       );
-      when(mockAbstractRepository.getAllTasks()).thenAnswer(mockAnswer);
+      when(mockAbstractTaskRepository
+              .getAllTasks(GetAllTaskMiddlewareTaskAction()))
+          .thenAnswer(mockAnswer);
       expect(
         await stream.toList(),
         matcher,
@@ -75,10 +78,18 @@ void main() {
             store,
           ),
         );
-        when(mockAbstractRepository.createTask(task)).thenAnswer(mockAnswerInt);
-        when(mockAbstractRepository.updateTask(task)).thenAnswer(mockAnswerInt);
-        when(mockAbstractRepository.deleteTask(task)).thenAnswer(mockAnswerInt);
-        when(mockAbstractRepository.getAllTasks()).thenAnswer(mockAnswer);
+        when(mockAbstractTaskRepository.createTask(
+                CreateTaskMiddlewareTaskAction.create(newTask: task.title!)))
+            .thenAnswer(mockAnswerInt);
+        when(mockAbstractTaskRepository.updateTask(
+                UpdateTaskMiddlewareTaskAction.create(updateTask: task)))
+            .thenAnswer(mockAnswerInt);
+        when(mockAbstractTaskRepository.deleteTask(
+                DeleteTaskMiddlewareTaskAction.create(deleteTask: task)))
+            .thenAnswer(mockAnswerInt);
+        when(mockAbstractTaskRepository
+                .getAllTasks(GetAllTaskMiddlewareTaskAction()))
+            .thenAnswer(mockAnswer);
         expect(
           await stream.toList().then((value) => value.toString()),
           matcher.toString(),
