@@ -1,5 +1,4 @@
 import 'package:built_collection/built_collection.dart';
-import 'package:flutter/material.dart';
 import 'package:task_management_redux/repository/offline_db_provider.dart';
 import 'package:task_management_redux/repository/task_repository.dart';
 import 'package:task_management_redux/store/actions/task_actions.dart';
