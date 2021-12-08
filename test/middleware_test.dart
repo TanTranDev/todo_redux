@@ -47,6 +47,10 @@ void main() async {
             dumbTask,
           ]);
         };
+        // when interaction with non-dispatch action
+        when(mockAbstractTaskRepository
+                .getAllTasks(GetAllTaskMiddlewareTaskAction()))
+            .thenAnswer(mockAnswer);
         // run Epics Stream
         Stream<dynamic> streamActually = appMiddleware.call(
           Stream.fromIterable([action]).asBroadcastStream(),
@@ -54,10 +58,6 @@ void main() async {
             store,
           ),
         );
-        // when interaction with non-dispatch action
-        when(mockAbstractTaskRepository
-                .getAllTasks(GetAllTaskMiddlewareTaskAction()))
-            .thenAnswer(mockAnswer);
         // create expect matcher
         matcher = [
           ChangeStatusReducerAppAction.create(newStatus: "isLoading"),
@@ -100,13 +100,6 @@ void main() async {
         mockAnswerInt = (_) async {
           return 0;
         };
-        // run Epics Stream
-        Stream<dynamic> streamActually = appMiddleware.call(
-          Stream.fromIterable([action]).asBroadcastStream(),
-          EpicStore<AppState>(
-            store,
-          ),
-        );
         // when interaction with non-dispatch action
         when(mockAbstractTaskRepository
                 .getAllTasks(GetAllTaskMiddlewareTaskAction()))
@@ -115,6 +108,13 @@ void main() async {
                 CreateTaskMiddlewareTaskAction.create(
                     newTask: dumbTask.title!)))
             .thenAnswer(mockAnswerInt);
+        // run Epics Stream
+        Stream<dynamic> streamActually = appMiddleware.call(
+          Stream.fromIterable([action]).asBroadcastStream(),
+          EpicStore<AppState>(
+            store,
+          ),
+        );
         // create expect matcher
         matcher = [
           ChangeStatusReducerAppAction.create(newStatus: "isLoading"),
@@ -157,13 +157,6 @@ void main() async {
         mockAnswerInt = (_) async {
           return 0;
         };
-        // run Epics Stream
-        Stream<dynamic> streamActually = appMiddleware.call(
-          Stream.fromIterable([action]).asBroadcastStream(),
-          EpicStore<AppState>(
-            store,
-          ),
-        );
         // when interaction with non-dispatch action
         when(mockAbstractTaskRepository
                 .getAllTasks(GetAllTaskMiddlewareTaskAction()))
@@ -171,6 +164,13 @@ void main() async {
         when(mockAbstractTaskRepository.deleteTask(
                 DeleteTaskMiddlewareTaskAction.create(deleteTask: dumbTask)))
             .thenAnswer(mockAnswerInt);
+        // run Epics Stream
+        Stream<dynamic> streamActually = appMiddleware.call(
+          Stream.fromIterable([action]).asBroadcastStream(),
+          EpicStore<AppState>(
+            store,
+          ),
+        );
         // create expect matcher
         matcher = [
           ChangeStatusReducerAppAction.create(newStatus: "isLoading"),
@@ -213,13 +213,6 @@ void main() async {
         mockAnswerInt = (_) async {
           return 0;
         };
-        // run Epics Stream
-        Stream<dynamic> streamActually = appMiddleware.call(
-          Stream.fromIterable([action]).asBroadcastStream(),
-          EpicStore<AppState>(
-            store,
-          ),
-        );
         // when interaction with non-dispatch action
         when(mockAbstractTaskRepository
                 .getAllTasks(GetAllTaskMiddlewareTaskAction()))
@@ -227,6 +220,13 @@ void main() async {
         when(mockAbstractTaskRepository.updateTask(
                 UpdateTaskMiddlewareTaskAction.create(updateTask: dumbTask)))
             .thenAnswer(mockAnswerInt);
+        // run Epics Stream
+        Stream<dynamic> streamActually = appMiddleware.call(
+          Stream.fromIterable([action]).asBroadcastStream(),
+          EpicStore<AppState>(
+            store,
+          ),
+        );
         // create expect matcher
         matcher = [
           ChangeStatusReducerAppAction.create(newStatus: "isLoading"),
@@ -578,3 +578,5 @@ void main() async {
 //     });
 //   });
 // }
+
+// When muck run before Stream
